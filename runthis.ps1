@@ -1,4 +1,4 @@
-Set-ExecutionPolicy -Scope CurrentUser Unrestricted
+Set-ExecutionPolicy -Scope process Unrestricted
 
 Import-Module C:\AD\Microsoft.ActiveDirectory.Management.dll -Verbose
 Get-ADDomain
@@ -9,3 +9,10 @@ Import-Module C:\AD\PowerView.ps1
 
 Get-ADDefaultDomainPasswordPolicy
 (Get-DomainPolicy).SystemAccess
+
+$username = robert.baratheon
+$password = ConvertTo-SecureString "iamthekingoftheworld" -AsPlainText -Force
+$credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $username, $password
+
+Invoke-Command -ScriptBlock { Get-ADDefaultDomainPasswordPolicy } -Credential $credential
+Invoke-Command -ScriptBlock { (Get-DomainPolicy).SystemAccess } -Credential $credential
