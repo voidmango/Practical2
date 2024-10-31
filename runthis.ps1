@@ -1,4 +1,4 @@
-Set-ExecutionPolicy -Scope LocalMachine Unrestricted
+Set-ExecutionPolicy -Scope CurrentUser Unrestricted
 
 Import-Module C:\AD\Microsoft.ActiveDirectory.Management.dll -Verbose
 Get-ADDomain
