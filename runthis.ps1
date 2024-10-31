@@ -10,9 +10,9 @@ Import-Module C:\AD\PowerView.ps1
 Get-ADDefaultDomainPasswordPolicy
 (Get-DomainPolicy).SystemAccess
 
-$username = robert.baratheon
+$username = "robert.baratheon"
 $password = ConvertTo-SecureString "iamthekingoftheworld" -AsPlainText -Force
-$credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $username, $password
+$credential = New-Object System.Management.Automation.PSCredential($username, $password)
 
-Invoke-Command -ScriptBlock { Get-ADDefaultDomainPasswordPolicy } -Credential $credential
-Invoke-Command -ScriptBlock { (Get-DomainPolicy).SystemAccess } -Credential $credential
+
+Get-ADDefaultDomainPasswordPolicy -Credential $credential
