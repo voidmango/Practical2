@@ -16,3 +16,4 @@ $credential = New-Object System.Management.Automation.PSCredential($username, $p
 
 
 Get-ADDefaultDomainPasswordPolicy -Credential $credential
+(Get-DomainPolicy -Credential $credential).SystemAccess
